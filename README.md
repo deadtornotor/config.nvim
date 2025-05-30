@@ -6,7 +6,7 @@ This is my personal neovim config
 
 All dependencies can be found in the `requirements/` directory
 
-I try to stay up to date with all developemnt platforms I use
+I try to stay up to date with all development platforms I actively use
 
 
 | Platform | Note |
