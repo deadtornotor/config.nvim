@@ -1,0 +1,8 @@
+Neovim.Neovim
+fzf
+OpenJS.NodeJS
+JesseDuffield.lazygit
+sharkdp.fd
+BurntSushi.ripgrep.MSVC
+Git.Git
+GnuWin32.DiffUtils
