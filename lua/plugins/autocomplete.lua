@@ -7,6 +7,7 @@ return {
     dependencies = {
       'rafamadriz/friendly-snippets',
       "L3MON4D3/LuaSnip",
+      "danymat/neogen",
     },
     version = '1.*',
     ---@module 'blink.cmp'
