@@ -81,6 +81,12 @@ local function toggle_lazygit()
     return
   end
 
+
+  if vim.fn.has("win32") == 1 then
+    vim.opt.shell = "cmd.exe"
+    vim.opt.shellcmdflag = "/c"
+  end
+
   if not vim.api.nvim_win_is_valid(state.floating_term.win) then
     state.floating_term = create_floating_window({
       state = state.lazy_git, height_ratio = 0.8, width_ratio = 0.8
@@ -112,6 +118,8 @@ local function toggle_lazygit()
     vim.api.nvim_win_hide(state.lazy_git.win)
   end
 end
+
+
 
 vim.api.nvim_create_user_command("FloatinTerm", toggle_terminal, {})
 vim.keymap.set({ "n", "t" }, "<leader>tt", toggle_terminal, { desc = "Opens a floating terminal" })
