@@ -8,7 +8,17 @@ return {
         local path = vim.fn.expand "%"
         path = path:gsub("oil://", "")
 
-        return "  " .. vim.fn.fnamemodify(path, ":p:h")
+        -- Convert /x/ to x:/ for fs_realpath on windows
+        if require("deadtornotor.conf.os").type == "windows" then
+          path = path:gsub("^/([A-Za-z])/", "%1:/")
+        end
+
+        local real_path = vim.loop.fs_realpath(path) or path
+
+        -- Always use forward slash
+        local dir = vim.fn.fnamemodify(path, ":h"):gsub("\\", "/")
+
+        return "  " .. dir
       end
 
       require("oil").setup(

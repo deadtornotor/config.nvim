@@ -82,13 +82,13 @@ local function toggle_lazygit()
   end
 
 
-  if vim.fn.has("win32") == 1 then
+  if require("deadtornotor.conf.os").type == "windows" then
     vim.opt.shell = "cmd.exe"
     vim.opt.shellcmdflag = "/c"
   end
 
-  if not vim.api.nvim_win_is_valid(state.floating_term.win) then
-    state.floating_term = create_floating_window({
+  if not vim.api.nvim_win_is_valid(state.lazy_git.win) then
+    state.lazy_git = create_floating_window({
       state = state.lazy_git, height_ratio = 0.8, width_ratio = 0.8
     })
 
