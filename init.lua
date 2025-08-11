@@ -1,1 +1,1 @@
-require("deadtornotor")
+require('core')

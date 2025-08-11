@@ -1,224 +1,88 @@
-return {
-  {
-    "nvim-telescope/telescope.nvim",
-    tag = "0.1.8",
-    event = "VeryLazy",
-    lazy = true,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons',
-      'nvim-telescope/telescope-ui-select.nvim',
-      { "nvim-telescope/telescope-fzf-native.nvim", build = require("deadtornotor.conf.os").fzf_build_cmd },
-    },
-    config = function()
-      local telescope = require("telescope")
-      telescope.setup({
-        pickers = {
-          live_grep = {
-            additional_args = function()
-              return { "--follow" }
-            end,
-          },
-          grep_string = {
-            additional_args = function()
-              return { "--follow" }
-            end,
-          },
-          vimgrep_arguments = {
-            "rg",
-            "--color=never",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-            "--follow",
-          },
-          find_command = { "fd", "--type", "f", "-L" },
-        },
-        extentions = {
-          ['ui-select'] = {
-            require('telescope.themes').get_dropdown(),
-          }
-        }
-      })
+local utils = require('core.utils')
 
-      pcall(telescope.load_extension, "fzf")
-      pcall(telescope.load_extension, "ui-select")
-    end,
-    keys = {
-      {
-        "<leader><leader>",
-        function()
-          require("telescope.builtin").buffers()
-        end,
-        "n",
-        desc = "Search buffers"
-      },
-      {
-        "<leader>sh",
-        function()
-          require("telescope.builtin").help_tags()
-        end,
-        "n",
-        desc = "[s]earch [h]elp tags"
-      },
-      {
-        "<leader>s?",
-        function()
-          require("telescope.builtin").keymaps()
-        end,
-        "n",
-        desc = "[s]earch command help [?]"
-      },
-      {
-        "<leader>sf",
-        function()
-          require("telescope.builtin").find_files()
-        end,
-        "n",
-        desc = "[s]earch [f]iles"
-      },
-      {
-        "<leader>s.",
-        function()
-          require("telescope.builtin").oldfiles()
-        end,
-        "n",
-        desc = '[s]earch recent files [.]'
-      },
-      {
-        "<leader>sr",
-        function()
-          require("telescope.builtin").resume()
-        end,
-        "n",
-        desc = '[s]earch [r]esume'
-      },
-      {
-        "<leader>sd",
-        function()
-          require("telescope.builtin").diagnostics()
-        end,
-        "n",
-        desc = '[s]earch [d]iagnostics'
-      },
-      {
-        "<leader>sg",
-        function()
-          require("telescope.builtin").live_grep()
-        end,
-        "n",
-        desc = '[s]earch with [g]rep'
-      },
-      {
-        "<leader>sw",
-        function()
-          require("telescope.builtin").grep_string()
-        end,
-        "n",
-        desc = '[s]earch [w]ord'
-      },
-      {
-        "<leader>st",
-        function()
-          require("telescope.builtin").builtin()
-        end,
-        "n",
-        desc = '[s]earch select [t]elescope'
-      },
-      {
-        "<leader>sn",
-        function()
-          require("telescope.builtin").find_files {
-            find_command = { "fd", "--type", "f", "-L" },
-            cwd = vim.fn.stdpath("config")
-          }
-        end,
-        "n",
-        desc = "[s]earch [n]eovim config directory"
-      },
-      {
-        "<leader>ss",
-        function()
-          require("telescope.builtin").find_files {
-            find_command = { "fd", "--type", "f", "-L" },
-            cwd = vim.fn.expand('%:p:h')
-          }
-        end,
-        "n",
-        desc = "[s]earch current files directory"
-      },
-      {
-        "<leader>sp",
-        function()
-          require("telescope.builtin").find_files {
-            find_command = { "fd", "--type", "f", "-L" },
-            cwd = "~/projects"
-          }
-        end,
-        "n",
-        desc = "[s]earch [p]rojects directory"
-      },
-      {
-        "<leader>sd",
-        function()
-          require("telescope.builtin").find_files {
-            find_command = { "fd", "--type", "f", "-L" },
-            cwd = vim.fn.input("Directory: ")
-          }
-        end,
-        "n",
-        desc = "[s]earch specified [d]irectory"
-      },
-      {
-        "gd",
-        function()
-          require("telescope.builtin").lsp_definitions()
-        end,
-        "n",
-        desc = "[g]oto [d]efinition"
-      },
-      {
-        "gr",
-        function()
-          require("telescope.builtin").lsp_references()
-        end,
-        "n",
-        desc = "[g]oto [r]eferences"
-      },
-      {
-        "gI",
-        function()
-          require("telescope.builtin").lsp_implementations()
-        end,
-        "n",
-        desc = "[g]oto [I]mplementations"
-      },
-      {
-        "<leader>D",
-        function()
-          require("telescope.builtin").lsp_type_definitions()
-        end,
-        "n",
-        desc = "type [D]efinition"
-      },
-      {
-        "<leader>ds",
-        function()
-          require("telescope.builtin").lsp_document_symbols()
-        end,
-        "n",
-        desc = "[d]ocument [s]ymbols"
-      },
-      {
-        "<leader>ws",
-        function()
-          require("telescope.builtin").lsp_dynamic_workspace_symbols()
-        end,
-        "n",
-        desc = "[w]orkspace [s]ymbols"
-      },
+---@type plugins.Plugin
+return {
+  spec = {
+    version = "0.1.8",
+    src = "https://github.com/nvim-telescope/telescope.nvim.git"
+  },
+  dependencies = {
+    {
+      spec = {
+        src = "https://github.com/nvim-telescope/telescope-ui-select.nvim.git"
+      }
     },
-  }
+    {
+      spec = {
+        src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim.git"
+      },
+      build = require("core.os").fzf_build_cmd
+    },
+    {
+      spec = {
+        src = "https://github.com/nvim-lua/plenary.nvim.git"
+      }
+    },
+  },
+  setup = function()
+    local telescope = require("telescope")
+    telescope.setup({
+      pickers = {
+        live_grep = {
+          additional_args = function()
+            return { "--follow" }
+          end,
+        },
+        grep_string = {
+          additional_args = function()
+            return { "--follow" }
+          end,
+        },
+        vimgrep_arguments = {
+          "rg",
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+          "--follow",
+        },
+        find_command = { "fd", "--type", "f", "-L" },
+      },
+      extentions = {
+        ['ui-select'] = {
+          require('telescope.themes').get_dropdown(),
+        }
+      }
+    })
+
+    pcall(telescope.load_extension, "fzf")
+    pcall(telescope.load_extension, "ui-select")
+
+
+    local builtin = require("telescope.builtin")
+    -- Keymaps
+    local keymaps = {
+      -- Search
+      { '<leader><leader>', builtin.buffers,     { desc = '[ ] Search buffers' } },
+      { '<leader>sh',       builtin.help_tags,   { desc = '[s]earch [h]elp tags' } },
+      { '<leader>sk',       builtin.keymaps,     { desc = '[s]earch [k]eymaps' } },
+      { '<leader>sf',       builtin.find_files,  { desc = '[s]earch [f]iles' } },
+      { '<leader>s.',       builtin.oldfiles,    { desc = '[s]earch recent files [.]' } },
+      { '<leader>sr',       builtin.resume,      { desc = '[s]earch [r]esume' } },
+      { '<leader>sd',       builtin.diagnostics, { desc = '[s]earch [d]iagnostics' } },
+      { '<leader>sg',       builtin.live_grep,   { desc = '[s]earch with [g]rep' } },
+      { '<leader>sw',       builtin.grep_string, { desc = '[s]earch [w]ord' } },
+
+      { '<leader>sn', function()
+        builtin.find_files {
+          find_command = { "fd", "--type", "f", "-L" },
+          cwd = vim.fn.stdpath("config")
+        }
+      end, { desc = '[s]earch [n]eovim config' } },
+    }
+
+    utils.keys.set(keymaps)
+  end,
 }
