@@ -1,3 +1,5 @@
+local M = {}
+
 ---@class core.win.State
 ---@field buf number
 ---@field win number
@@ -13,7 +15,7 @@
 ---Create a floating window
 ---@param opts core.win.Opts
 ---@return core.win.State
-local function create_floating(opts)
+function M.create_floating(opts)
   opts = opts or { state = { buf = -1, win = -1 }, height_ratio = 0.8, width_ratio = 0.8 }
 
   local width = opts.width or math.floor(vim.o.columns * opts.width_ratio)
@@ -45,3 +47,5 @@ local function create_floating(opts)
 
   return opts.state
 end
+
+return M
