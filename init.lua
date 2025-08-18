@@ -330,11 +330,15 @@ vim.lsp.enable(lsp_names)
 --- ===================================================
 
 function git_branch()
-  local branch = vim.fn.system("git branch --show-current 2>/dev/null | tr -d '\n'")
-  if branch ~= "" then
-    return "" .. branch .. " | "
+  local ok, branch = pcall(function()
+    return vim.fn.systemlist({ "git", "branch", "--show-current" })[1]
+  end)
+
+  if ok and branch and branch ~= "" and not branch:match("^fatal:") then
+    return branch .. " | "
   end
-  return " "
+
+  return ""
 end
 
 -- File type with icon
