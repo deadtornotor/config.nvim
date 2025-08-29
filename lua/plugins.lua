@@ -1,4 +1,4 @@
-local plugin_utils = require("core.utils.plugin")
+local plugin_utils = require("core.plugin")
 
 local sync_setup = {
   'color.tokyonight',

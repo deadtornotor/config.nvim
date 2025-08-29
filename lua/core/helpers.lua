@@ -1,3 +1,7 @@
+--- ===================================================
+--- Utility
+--- ===================================================
+
 ---Inspect utility function
 ---@param param any Value to inspect
 _G.I = function(param)

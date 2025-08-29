@@ -7,9 +7,9 @@ return {
     local configs = require("nvim-treesitter.configs")
 
     configs.setup({
-      ensure_installed = require("core.config").languages,
+      ensure_installed = require("config.lang").languages,
 
-   auto_install = true,
+      auto_install = true,
 
       highlight = {
         enable = true,

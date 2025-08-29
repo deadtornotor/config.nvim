@@ -34,7 +34,4 @@ M.servers = {
   --  "lemminx", -- XML
 }
 
-M.os = require("core.os")
-
-
 return M

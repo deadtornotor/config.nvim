@@ -34,7 +34,7 @@ CustomOilBar = function()
   path = path:gsub("oil://", "")
 
   -- Convert /x/ to x:/ for fs_realpath on windows
-  if require("core.os").type == "windows" then
+  if require("config.os").type == "windows" then
     path = path:gsub("^/([A-Za-z])/", "%1:/")
   end
 

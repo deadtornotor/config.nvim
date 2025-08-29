@@ -16,7 +16,7 @@ return {
       spec = {
         src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim.git"
       },
-      build = require("core.os").fzf_build_cmd
+      build = require("config.os").fzf_build_cmd
     },
     {
       spec = {

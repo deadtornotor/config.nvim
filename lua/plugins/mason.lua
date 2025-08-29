@@ -1,6 +1,6 @@
 ---@type plugins.Plugin
 return {
-  spec  = {
+  spec         = {
     src = "https://github.com/mason-org/mason.nvim.git",
   },
   dependencies = {
@@ -15,7 +15,7 @@ return {
       },
     },
   },
-  setup = function()
+  setup        = function()
     require("mason").setup({
       ui = {
         icons = {
@@ -26,7 +26,7 @@ return {
       }
     })
 
-    local servers = require("core.config").servers
+    local servers = require("config.lang").servers
 
     require("mason-lspconfig").setup({
       ensure_installed = servers,

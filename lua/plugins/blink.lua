@@ -39,7 +39,7 @@ return {
 
 
     --- Lsp configurations ---
-    local servers = require("core.config").servers
+    local servers = require("config.lang").servers
 
     local capabilities = nil
 
@@ -54,7 +54,11 @@ return {
         opts.settings = {
           Lua = {
             workspace = {
-              library = vim.api.nvim_get_runtime_file("", true)
+              library = vim.tbl_extend(
+                "force",
+                vim.api.nvim_get_runtime_file("", true),
+                {}
+              )
             },
           }
         }

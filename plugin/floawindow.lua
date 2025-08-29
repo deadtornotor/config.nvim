@@ -37,7 +37,7 @@ local function toggle_lazygit()
   end
 
 
-  if require("core.os").type == "windows" then
+  if require("config.os").type == "windows" then
     vim.opt.shell = "cmd.exe"
     vim.opt.shellcmdflag = "/c"
   end

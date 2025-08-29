@@ -1,5 +1,5 @@
 local function build_cmd()
-  if require("core.os").type == "windows" then
+  if require("config.os").type == "windows" then
     return nil
   end
 

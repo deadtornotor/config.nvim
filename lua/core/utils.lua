@@ -1,14 +1,14 @@
-require "core.utils.helpers"
+require "core.helpers"
 
 local M = {}
 
-M.keys = require("core.utils.keymap")
-M.plugin = require("core.utils.plugin")
+M.keys = require("core.keymap")
+M.plugin = require("core.plugin")
 
 -- Safely require modules
 -- e.g. even if one part fails the config will try its best to still work
 ---@param module_name string Module name
----@return [table|nil] module The Module
+---@return table|nil module The Module
 function M.safe_require(module_name)
   local ok, mod = pcall(require, module_name)
   if not ok then
