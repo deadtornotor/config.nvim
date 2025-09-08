@@ -97,11 +97,19 @@ local function run_build_cmd(plugin)
   local name = plugin.module_name
   local cmd = plugin.build
 
+  local os_conf = require("config.os")
+
+  local exec_cmd
+
+  if os_conf.type == "windows" then
+    exec_cmd = { "cmd.exe", "/C", "cd /D " .. path .. " && " .. cmd }
+  else
+    exec_cmd = { "sh", "-c", "cd " .. vim.fn.shellescape(path) .. " && " .. cmd }
+  end
+
+
   vim.system(
-    { "sh", "-c", "cd " .. vim.fn.shellescape(path) .. " && " .. cmd },
-    {
-      text = true,
-    }, function(obj)
+    exec_cmd, { text = true }, function(obj)
       if obj.code == 0 then
         return
       end
