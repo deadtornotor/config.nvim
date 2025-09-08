@@ -28,10 +28,7 @@ local windows = {
   "cmake -S. -Bbuild -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
   setup = function()
     vim.opt.shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell"
-    vim.opt.backup = false
-    vim.opt.swapfile = false
     vim.opt.undodir = os.getenv('LOCALAPPDATA') .. '/nvim-data/undo'
-    vim.opt.undofile = true
   end
 }
 
