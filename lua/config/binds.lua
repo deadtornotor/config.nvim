@@ -64,17 +64,7 @@ local keymaps = {
     print("file:", path)
   end, { desc = "Neovim Config" } },
   { "n", "<leader>cd", function()
-    local using_oil, oil = pcall(require, "oil")
-    local path
-
-    if using_oil and oil.get_current_dir() then
-      -- Inside an Oil buffer
-      path = oil.get_current_dir()
-    else
-      -- Regular file buffer
-      path = vim.fn.expand("%:p:h")
-    end
-
+    local path = vim.fn.expand("%:p:h")
     -- Change the working directory
     vim.cmd("cd " .. vim.fn.fnameescape(path))
     print("Changed directory to: " .. path)

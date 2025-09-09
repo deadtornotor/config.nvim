@@ -84,3 +84,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Remap refresh to C-o and moving to C-l",
+  pattern = "netrw",
+  group = augroup,
+  callback = function()
+    vim.cmd("nnoremap <buffer> <C-l> <C-W>l")
+    vim.cmd("nnoremap <buffer> <C-o> <Plug>NetrwRefresh")
+  end
+})

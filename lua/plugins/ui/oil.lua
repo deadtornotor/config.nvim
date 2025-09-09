@@ -14,9 +14,6 @@ local M = {
           ["<C-h>"] = false,
           ["<C-l>"] = false,
         },
-        win_options = {
-          winbar = "%{v:lua.CustomOilBar()}",
-        },
         view_options = {
           show_hidden = true,
         },
