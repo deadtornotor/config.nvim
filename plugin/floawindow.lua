@@ -75,7 +75,7 @@ local function toggle_lazygit()
 end
 
 vim.api.nvim_create_user_command("FloatinTerm", toggle_terminal, {})
-vim.keymap.set({ "n", "t" }, "<leader>t", toggle_terminal, { desc = "Opens a floating terminal" })
+vim.keymap.set({ "n", "t" }, "<leader>tt", toggle_terminal, { desc = "Opens a floating terminal" })
 
 vim.api.nvim_create_user_command("LazyGit", toggle_lazygit, {})
-vim.keymap.set({ "n", "t" }, "<leader>g", toggle_lazygit, { desc = "Opens Lazygit" })
+vim.keymap.set({ "n" }, "<leader>g", toggle_lazygit, { desc = "Opens Lazygit" })

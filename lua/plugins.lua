@@ -4,7 +4,7 @@ local sync_setup = {
   'color.tokyonight',
   -- UI
   'ui.mini_icons',
-  'ui.oil',
+  --'ui.oil',
   'ui.lualine',
 }
 
