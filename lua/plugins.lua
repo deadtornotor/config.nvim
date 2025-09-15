@@ -10,12 +10,16 @@ local sync_setup = {
 
 ---@type string[]
 local async_setup = {
+
   'trouble',
   'undo_tree',
   'telescope',
   -- cmp
   'blink',
   'treesitter',
+
+  'ui.markdown',
+
   'ui.which_key',
 }
 

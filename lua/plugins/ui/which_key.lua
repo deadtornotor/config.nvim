@@ -36,7 +36,9 @@ local opts = {
   spec = {
     { "<leader>b", group = "[B]uffer" },
     { "<leader>s", group = "[S]earch" },
-    { "<leader>x", group = "[X] Trouble" },
+    { "<leader>x", group = "[X]Trouble" },
+    { "<leader>t", group = "[T]abs" },
+    { "<leader>c", group = "[C]hange" },
   },
 }
 
