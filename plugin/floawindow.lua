@@ -15,6 +15,12 @@ local state = {
   }
 }
 
+---Add quit buffer keymap
+---@param buf number
+---@param func fun()
+local function buf_toggle_key(buf, func)
+  vim.keymap.set({ "n", "t" }, "<leader>qq", func, { buffer = buf })
+end
 
 local function toggle_terminal()
   if not vim.api.nvim_win_is_valid(state.floating_term.win) then
@@ -24,6 +30,8 @@ local function toggle_terminal()
 
     if vim.bo[state.floating_term.buf].buftype ~= "terminal" then
       vim.cmd.terminal()
+
+      buf_toggle_key(state.floating_term.buf, toggle_terminal)
     end
   else
     vim.api.nvim_win_hide(state.floating_term.win)
@@ -51,6 +59,7 @@ local function toggle_lazygit()
       vim.cmd.terminal("lazygit")
       local term_buf = state.lazy_git.buf
 
+      buf_toggle_key(term_buf, toggle_lazygit)
 
       vim.api.nvim_create_autocmd("TermClose", {
         buffer = term_buf,

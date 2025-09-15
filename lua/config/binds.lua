@@ -4,7 +4,7 @@
 
 local keymaps = {
   -- Basics
-  { 'n',               '<leader>u',  '<CMD>update<CR>',             { desc = "Source file" } },
+  { 'n',               '<leader>up', '<CMD>update<CR>',             { desc = "Source file" } },
   { 'n',               '<leader>w',  '<CMD>write<CR>',              { desc = "Write file" } },
   { 'n',               '<leader>o',  '<CMD>quit<CR>',               { desc = "Quit" } },
   { 'n',               '<Esc>',      '<CMD>nohlsearch<CR>',         { desc = "Deselect" } },
@@ -62,7 +62,7 @@ local keymaps = {
     local path = vim.fn.expand("%:p")
     vim.fn.setreg("+", path)
     print("file:", path)
-  end, { desc = "Neovim Config" } },
+  end, { desc = "Copy file path to system clipboard" } },
   { "n", "<leader>cd", function()
     local path = vim.fn.expand("%:p:h")
     -- Change the working directory

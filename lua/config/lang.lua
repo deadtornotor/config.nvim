@@ -3,7 +3,7 @@ local M = {}
 M.languages = {
   "c",
   "lua",
-  --  "vim",
+  "vim",
   --  "vimdoc",
   --  "query",
   "javascript",
@@ -18,6 +18,8 @@ M.languages = {
   "make",
   --  "sql",
   "doxygen",
+  "editorconfig",
+  "toml",
 }
 
 M.servers = {

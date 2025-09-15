@@ -27,6 +27,7 @@ vim.o.hlsearch = false
 vim.o.incsearch = true
 
 -- Visual
+vim.o.winborder = "rounded"
 vim.o.termguicolors = true
 vim.o.signcolumn = "yes"
 vim.o.showmode = false
